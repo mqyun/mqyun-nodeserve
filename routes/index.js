@@ -4,11 +4,13 @@ const svgCaptcha = require('svg-captcha');
 const IndexLib = require('../lib/IndexLib');
 const indexLib = new IndexLib();
 
+router.prefix('/');
+
 // 获取验证码
 router.get('/getCaptcha', async ctx => {
   const captcha = svgCaptcha.create({
     size: 4,
-    ignoreChars: '0o1i',
+    ignoreChars: '0o1li',
     noise: 4,
     color: true,
     height: 34,

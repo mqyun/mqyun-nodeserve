@@ -13,6 +13,10 @@ const port = process.env.port || 3000;
 
 const index = require('./routes/index');
 const user = require('./routes/user');
+const workRecord = require('./routes/workRecord');
+
+const Utils = require('./utils/utils');
+const utils = new Utils();
 
 app.use(bodyparser({
   enableTypes: ['json', 'form', 'text']
@@ -44,8 +48,11 @@ app.use(async (ctx, next) => {
   await next();
 });
 
+app.use(utils.checkToken);
+
 app.use(index.routes(), index.allowedMethods());
 app.use(user.routes(), user.allowedMethods());
+app.use(workRecord.routes(), workRecord.allowedMethods());
 
 app.keys = ['mqyun'];
 app.use(session({

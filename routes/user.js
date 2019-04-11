@@ -28,8 +28,8 @@ router.post('/login', async (ctx, next) => {
           ...resData,
           data: {
             token: addToken({
-              account: res[0].account,
-              uid: res[0].id
+              uid: res[0].id,
+              account: res[0].account
             })
           },
           detail: '登录成功'

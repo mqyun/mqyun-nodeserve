@@ -1,12 +1,9 @@
 const jwt = require('jsonwebtoken');
-const serect = 'token';
+const serect = 'my_token';
 
 module.exports = userInfo => {
-  const token = jwt.sign({
-    account: userInfo.account,
-    uid: userInfo.id
-  }, serect, {
-    expiresIn: '1h'
+  const token = jwt.sign(userInfo, serect, {
+    expiresIn: '2h'
   });
   return token;
 };

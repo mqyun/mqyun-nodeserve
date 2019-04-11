@@ -10,21 +10,25 @@ router.prefix('/workrecord');
 // 列表
 router.get('/list', async (ctx, next) => {
   let resData = utils.initRes();
-  const uid = 1;
-  await workLib.getList(uid).then(res => {
+  const { pageNo = 1, pageSize = 20, uid } = ctx.request.body;
+  await workLib.getList({
+    uid,
+    pageNo,
+    pageSize
+  }).then(res => {
     resData = {
       ...resData,
       data: {
         data: res
       }
     }
-  }).then(err => {
+  }).catch(err => {
     resData = {
       ...resData,
       code: -200,
       detail: '服务器内部错误'
     }
-    next();
+    next(err);
   });
   ctx.body = resData;
 });
