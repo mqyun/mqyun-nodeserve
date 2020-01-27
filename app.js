@@ -9,7 +9,7 @@ const session = require('koa-session');
 
 const localFilter = require('./token/proving');
 
-const port = process.env.port || 3000;
+const port = process.env.port || 9001;
 
 const index = require('./routes/index');
 const user = require('./routes/user');
