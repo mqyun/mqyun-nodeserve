@@ -4,17 +4,19 @@ const svgCaptcha = require('svg-captcha');
 const IndexLib = require('../lib/IndexLib');
 const indexLib = new IndexLib();
 
-router.prefix('/');
+const publicInfo = require('../public');
+const { routerPublicUrl } = publicInfo;
 
-// 获取验证码
+router.prefix(`${routerPublicUrl}/`);
+
 router.get('/getCaptcha', async ctx => {
   const captcha = svgCaptcha.create({
     size: 4,
     ignoreChars: '0o1li',
-    noise: 4,
+    noise: 0,
     color: true,
-    height: 34,
-    background: '#6e9ac7'
+    height: 40,
+    background: '#23222d'
   });
   const key = `${Date.parse(new Date())}${Math.floor(Math.random()*9999+1)}`;
   await indexLib.addKeyValue(key, captcha.text.toLowerCase());

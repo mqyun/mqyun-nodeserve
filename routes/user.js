@@ -9,7 +9,10 @@ const utils = new Utils();
 
 const addToken = require('../token/add');
 
-router.prefix('/user');
+const publicInfo = require('../public');
+const { routerPublicUrl } = publicInfo;
+
+router.prefix(`${routerPublicUrl}/user`);
 
 // 登录
 router.post('/login', async (ctx, next) => {

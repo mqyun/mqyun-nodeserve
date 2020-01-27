@@ -1,9 +1,9 @@
 // 数据库链接配置
 const config = {
   connectionLimit: 50,
-  host: 'mqyun',
+  host: '118.25.78.69',
   user: 'root',
-  password: 'ms686996',
+  password: 'mw686996',
   database: 'mqyun',
   port: 3306,
   multipleStatements: true

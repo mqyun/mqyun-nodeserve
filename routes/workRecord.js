@@ -5,7 +5,10 @@ const workLib = new WorkLib();
 const Utils = require('../utils/utils');
 const utils = new Utils();
 
-router.prefix('/workrecord');
+const publicInfo = require('../public');
+const { routerPublicUrl } = publicInfo;
+
+router.prefix(`${routerPublicUrl}/workrecord`);
 
 // 列表
 router.get('/list', async (ctx, next) => {

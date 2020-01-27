@@ -5,19 +5,22 @@ const verify = util.promisify(jwt.verify);
 const IndexLib = require('../lib/IndexLib');
 const indexLib = new IndexLib();
 
+const publicInfo = require('../public');
+const { routerPublicUrl } = publicInfo;
+
 class Utils {
   // 初始化接口返回
   initRes() {
     return {
       code: 0,
       data: {},
-      detail: '请求成功'
+      detail: '成功'
     }
   }
 
   async checkToken(ctx, next) {
     const reqUrl = ctx.request.url;
-    const allowUrl = ['/getCaptcha', '/user/login'];
+    const allowUrl = [`${routerPublicUrl}/getCaptcha`, `${routerPublicUrl}/user/login`];
     if (allowUrl.indexOf(reqUrl) > -1) {
       await next();
     } else {
